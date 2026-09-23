@@ -87,3 +87,11 @@ func (rc *RecordController) GetRecordByMachine(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, records)
 }
+
+func (rc *RecordController) GetNewRecord(c *gin.Context) {
+	go sendEmail()
+}
+
+func sendEmail() bool {
+	return true
+}

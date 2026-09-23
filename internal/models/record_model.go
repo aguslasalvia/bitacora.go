@@ -1,10 +1,9 @@
 package models
 
 import (
-	"time"
-
 	"bitacora/internal/config"
 	"bitacora/internal/core"
+	"time"
 )
 
 func AddRecord(record core.Record) error {
@@ -69,7 +68,8 @@ func GetRecordByMachine(machine string, limit int) ([]core.Record, error) {
 		ORDER BY startDateTime DESC
 		LIMIT ?;
 	`, machine, limit)
-	if err != nil {
+
+	if err != nil || rows.Err() != nil {
 		return nil, err
 	}
 

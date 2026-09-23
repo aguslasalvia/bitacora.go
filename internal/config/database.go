@@ -12,7 +12,6 @@ import (
 var Database *sql.DB
 
 func init() {
-
 	fmt.Println("Conectando a:", "bitacora.db")
 
 	var err error
