@@ -1,0 +1,31 @@
+---
+// Shared card shell (icon + title + subtitle header, body slot) used by the
+// ledger, the new-entry modal and the record-detail modal so all three
+// panels share one consistent header pattern.
+import Icon, { type IconName } from './Icon.astro';
+import './Slip.css';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  icon?: IconName;
+  id?: string;
+  class?: string;
+}
+
+const { title, subtitle, icon, id, class: className } = Astro.props;
+---
+
+<div class:list={['slip', className]} id={id}>
+  <div class="slip-head">
+    {icon && <Icon name={icon} class="icon slip-head-icon" />}
+    <div class="slip-head-text">
+      <h2>{title}</h2>
+      <p>{subtitle}</p>
+    </div>
+    <slot name="head-extra" />
+  </div>
+  <div class="slip-body">
+    <slot />
+  </div>
+</div>

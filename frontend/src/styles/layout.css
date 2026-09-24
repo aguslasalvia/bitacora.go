@@ -1,0 +1,11 @@
+.sheet {
+  padding: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .sheet {
+    padding: 0.75rem;
+  }
+}

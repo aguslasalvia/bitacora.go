@@ -1,4 +1,16 @@
-# Etapa 1: Builder
+# Etapa 1: build del frontend (Astro -> archivos estáticos)
+FROM node:22-bullseye-slim AS frontend-builder
+
+WORKDIR /app/frontend
+
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm install
+
+COPY frontend/ ./
+# outDir de astro.config.mjs es ../web, relativo a /app/frontend
+RUN npm run build
+
+# Etapa 2: Builder de Go
 FROM golang:1.24-bullseye AS builder
 
 # Directorio de trabajo
@@ -16,13 +28,16 @@ RUN go mod download
 # Copiar todo el proyecto
 COPY . .
 
-# Compilar binario y dejar scripts/ y templates/ como hermanos
+# Frontend ya buildeado en la etapa anterior
+COPY --from=frontend-builder /app/web ./web
+
+# Compilar binario y dejar scripts/ y web/ como hermanos
 RUN mkdir -p bin && \
     go build -o bin/app ./cmd/bitacora && \
     cp -r ./scripts bin/ && \
-    cp -r ./templates bin/
+    cp -r ./web bin/
 
-# Etapa 2: Imagen final mínima
+# Etapa 3: Imagen final mínima
 FROM debian:11-slim
 
 # Instalar librerías de runtime necesarias para CGO
@@ -32,7 +47,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-# Copiar binario junto con scripts/ y templates/ (paths relativos al cwd)
+# Copiar binario junto con scripts/ y web/ (paths relativos al cwd)
 COPY --from=builder /app/bin/ ./
 
 # Definir comando por defecto

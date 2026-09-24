@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+import Slip from './Slip.astro';
+import './RecordModal.css';
+---
+
+<div class="modal-backdrop" id="modal-backdrop" hidden>
+  <Slip
+    title="Detalle del registro"
+    subtitle="Información completa del uso de equipo"
+    icon="clipboard-list"
+    id="modal"
+    class="modal"
+  >
+    <span slot="head-extra" class="equipment-badge" id="modal-equipment"></span>
+    <button slot="head-extra" type="button" class="modal-close" id="modal-close" aria-label="Cerrar">
+      <Icon name="x" class="icon" />
+    </button>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Nombre</div>
+        <div class="info-value" id="modal-name"></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Laboratorio</div>
+        <div class="info-value" id="modal-lab"></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Usuario final</div>
+        <div class="info-value" id="modal-enduser"></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Inicio</div>
+        <div class="info-value" id="modal-start"></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Fin</div>
+        <div class="info-value" id="modal-end"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="status-row">
+      <div class="status-item" id="modal-received-item">
+        <div class="status-icon">
+          <Icon name="package-check" class="icon" />
+        </div>
+        <div class="status-body">
+          <span class="status-label">Recibió en buen estado</span>
+          <strong class="status-value" id="modal-received-value"></strong>
+        </div>
+      </div>
+      <div class="status-item" id="modal-returned-item">
+        <div class="status-icon">
+          <Icon name="package-plus" class="icon" />
+        </div>
+        <div class="status-body">
+          <span class="status-label">Devolvió en buen estado</span>
+          <strong class="status-value" id="modal-returned-value"></strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="comments-label">Comentarios</div>
+    <div class="comments-box" id="modal-comments"></div>
+  </Slip>
+</div>

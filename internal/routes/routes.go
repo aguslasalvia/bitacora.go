@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"net/http"
-
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -13,9 +11,7 @@ func SetupRoutes() *gin.Engine {
 
 	r := gin.Default()
 
-	r.LoadHTMLGlob("templates/*")
-
-	// allow cors && specific methods    
+	// allow cors && specific methods
 	r.Use(cors.New(
 		cors.Config{
 			AllowOrigins: []string{"*"},
@@ -24,12 +20,14 @@ func SetupRoutes() *gin.Engine {
 		},
 	))
 
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-	})
-
 	// inport && init routes
 	RecordRouter(r)
+
+	// static frontend (Astro build output, kept alongside the binary at ./web)
+	r.Static("/_astro", "./web/_astro")
+	r.StaticFile("/favicon.ico", "./web/favicon.ico")
+	r.StaticFile("/favicon.svg", "./web/favicon.svg")
+	r.StaticFile("/", "./web/index.html")
 
 	return r
 }

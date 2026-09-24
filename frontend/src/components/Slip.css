@@ -1,0 +1,84 @@
+.slip {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.slip-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.slip-head-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.15rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.slip-head-text {
+  flex: 1;
+}
+
+.slip-head-text h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.slip-head-text p {
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  margin-top: 0.1rem;
+}
+
+.slip-body {
+  padding: 1.1rem;
+}
+
+/* Modal chrome shared by every Slip used as a modal (new-entry, record detail) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 20;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: 94vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

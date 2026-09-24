@@ -20,15 +20,24 @@ jobs:
       - name: Fix git ownership
         run: git config --global --add safe.directory '*'
 
-      - name: Install zip
-        run: apt-get update && apt-get install -y zip
+      - name: Install zip and Node.js
+        run: |
+          apt-get update && apt-get install -y zip curl
+          curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+          apt-get install -y nodejs
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
 
       - name: Build
         run: |
           mkdir -p bin
           go build -v -o bin/app ./cmd/bitacora/
           cp -r ./scripts bin/
-          cp -r ./templates bin/
+          cp -r ./web bin/
 
       - name: Test
         run: go test -v ./...

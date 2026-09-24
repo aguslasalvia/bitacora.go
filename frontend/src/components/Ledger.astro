@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import Slip from './Slip.astro';
+import { FAMILIES } from '../data/equipment';
+import './Ledger.css';
+---
+
+<Slip title="Historial" subtitle="Registros de uso de equipos" icon="list" class="ledger-card">
+  <button slot="head-extra" type="button" class="new-entry-btn" id="open-entry-btn">
+    <Icon name="square-plus" class="icon" />
+    Nuevo registro
+  </button>
+
+  <div class="filter-bar">
+    <Icon name="filter" class="icon filter-icon" />
+    <div class="filter-select-wrap">
+      <select id="slt-equipment">
+        <option value="">Todos los equipos</option>
+        {
+          FAMILIES.map((family) => (
+            <optgroup label={family.label}>
+              {family.items.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </optgroup>
+          ))
+        }
+      </select>
+    </div>
+    <div class="filter-select-wrap filter-limit-wrap">
+      <select id="slt-limit">
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="0">Todos</option>
+      </select>
+    </div>
+    <button type="button" class="filter-btn" id="btn-search" aria-label="Buscar">
+      <Icon name="search" class="icon" />
+    </button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="ledger">
+      <thead>
+        <tr>
+          <th class="col-idx">#</th>
+          <th>Nombre</th>
+          <th>Usuario final</th>
+          <th>Laboratorio</th>
+          <th>Equipo</th>
+          <th>Fecha</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody-logs"></tbody>
+    </table>
+  </div>
+</Slip>

@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import Trace from './Trace.astro';
+import './Masthead.css';
+---
+
+<header class="masthead">
+  <div class="masthead-id">
+    <div class="brand-mark">
+      <Icon name="flask-conical" class="icon" />
+    </div>
+    <div class="masthead-text">
+      <h1>Bitácora</h1>
+      <p>CEFI · Facultad de Química</p>
+    </div>
+  </div>
+  <Trace class="masthead-trace" />
+  <div class="masthead-date">
+    <Icon name="calendar-days" class="icon" />
+    <span id="current-date"></span>
+  </div>
+</header>

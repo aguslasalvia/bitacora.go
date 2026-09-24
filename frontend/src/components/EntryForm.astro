@@ -1,0 +1,97 @@
+---
+import Icon from './Icon.astro';
+import Slip from './Slip.astro';
+import { FAMILIES } from '../data/equipment';
+import './EntryForm.css';
+---
+
+<div class="modal-backdrop" id="entry-modal-backdrop" hidden>
+  <Slip
+    title="Nuevo registro"
+    subtitle="Datos del equipo utilizado"
+    icon="clipboard-plus"
+    id="entry-modal"
+    class="modal"
+  >
+    <button slot="head-extra" type="button" class="modal-close" id="entry-modal-close" aria-label="Cerrar">
+      <Icon name="x" class="icon" />
+    </button>
+
+    <form class="entry-form" id="entry-form">
+      <div class="field-grid">
+        <div class="field">
+          <label for="name">Nombre completo<span class="required">*</span></label>
+          <input type="text" id="name" placeholder="Ingrese su nombre" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="lab">Laboratorio<span class="required">*</span></label>
+          <input type="text" id="lab" placeholder="Nombre del laboratorio" />
+        </div>
+        <div class="field">
+          <label for="endUser">Usuario final</label>
+          <input type="text" id="endUser" placeholder="Nombre del usuario final" />
+        </div>
+        <div class="field">
+          <label for="equipment">Equipo<span class="required">*</span></label>
+          <select id="equipment">
+            <option value="">— Seleccione un equipo —</option>
+            {
+              FAMILIES.map((family) => (
+                <optgroup label={family.label}>
+                  {family.items.map((item) => (
+                    <option value={item}>{item}</option>
+                  ))}
+                </optgroup>
+              ))
+            }
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Fecha<span class="required">*</span></label>
+          <input type="date" id="date" />
+        </div>
+        <div class="field">
+          <label for="startTime">Hora inicio<span class="required">*</span></label>
+          <input type="time" id="startTime" />
+        </div>
+        <div class="field">
+          <label for="endTime">Hora fin</label>
+          <input type="time" id="endTime" />
+        </div>
+      </div>
+
+      <div class="toggle-section">
+        <div class="toggle-item">
+          <Icon name="package-check" class="icon toggle-icon" />
+          <span class="toggle-label">Recibió en buen estado</span>
+          <label class="switch">
+            <input type="checkbox" id="received" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <Icon name="package-plus" class="icon toggle-icon" />
+          <span class="toggle-label">Devolvió en buen estado</span>
+          <label class="switch">
+            <input type="checkbox" id="returned" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <p class="toggle-hint">
+        Si no se marcan, se registra automáticamente como no recibido/devuelto en buen estado.
+      </p>
+
+      <div class="field">
+        <label for="comments" id="required-comments">Comentarios</label>
+        <textarea id="comments" placeholder="Observaciones, condiciones de uso, incidencias..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <Icon name="save" class="icon" />
+        Guardar registro
+      </button>
+    </form>
+  </Slip>
+</div>

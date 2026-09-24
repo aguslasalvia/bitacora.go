@@ -1,0 +1,28 @@
+---
+// A small chromatogram-style trace icon — grounded in the actual
+// instruments this log tracks (HPLC/GC/UHPLC all output a baseline-and-peaks
+// trace like this). Used as a small accent next to the wordmark.
+import './Trace.css';
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={`trace ${className ?? ''}`}
+  viewBox="0 0 240 40"
+  fill="none"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+>
+  <path
+    d="M0,32 L18,32 C23,32 25,11 29,11 C33,11 35,32 40,32 L68,32 C72,32 76,5 81,5 C86,5 89,32 94,32 L128,32 C132,32 134,21 137,21 C140,21 142,32 146,32 L198,32 C202,32 205,15 208,15 C211,15 214,32 218,32 L240,32"
+    pathLength="1"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  ></path>
+</svg>

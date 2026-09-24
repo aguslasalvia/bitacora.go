@@ -1,0 +1,42 @@
+---
+import Masthead from '../components/Masthead.astro';
+import EntryForm from '../components/EntryForm.astro';
+import Ledger from '../components/Ledger.astro';
+import RecordModal from '../components/RecordModal.astro';
+import AppToaster from '../components/Toaster';
+import '../styles/global.css';
+import '../styles/layout.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Bitácora CEFI · Facultad de Química</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <AppToaster client:load />
+
+    <Masthead />
+
+    <div class="sheet">
+      <main>
+        <Ledger />
+      </main>
+    </div>
+
+    <EntryForm />
+    <RecordModal />
+
+    <script src="../scripts/app.ts"></script>
+  </body>
+</html>

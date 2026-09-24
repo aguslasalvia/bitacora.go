@@ -64,10 +64,10 @@ func GetRecordByMachine(machine string, limit int) ([]core.Record, error) {
 		SELECT  id, name, lab, endUser, equipment, startDateTime, endDateTime,
 			received, returned, comments, timestamp
 		FROM records
-		WHERE equipment = ?
+		WHERE ? = '' OR equipment = ?
 		ORDER BY startDateTime DESC
 		LIMIT ?;
-	`, machine, limit)
+	`, machine, machine, limit)
 
 	if err != nil || rows.Err() != nil {
 		return nil, err

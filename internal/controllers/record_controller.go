@@ -57,7 +57,7 @@ func (rc *RecordController) GetRecordByID(c *gin.Context) {
 		end = "" // no mostrar nada
 	}
 
-	c.HTML(http.StatusOK, "item.html", gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"Record": record,
 		"Start":  start,
 		"End":    end,

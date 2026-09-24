@@ -1,0 +1,88 @@
+/*
+  Design system: "Data-Dense Dashboard" (ui-ux-pro-max skill, style domain)
+  — minimal padding, compact cards, sticky table headers — with the
+  generated "dashboard/data/technical" palette and Fira Sans/Fira Code
+  typography for this product type (internal data-entry + log tool).
+*/
+:root {
+  /* Surfaces */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #eff4fa;
+
+  /* Text */
+  --ink: #0f172a;
+  --ink-soft: #475569;
+  --ink-dim: #94a3b8;
+  --brand: #1e3a8a;
+
+  /* Lines */
+  --line: #dbeafe;
+  --line-strong: #93c5fd;
+
+  /* Primary (brand blue) */
+  --primary: #1e40af;
+  --primary-dark: #1e3a8a;
+  --primary-soft: rgba(30, 64, 175, 0.08);
+  --primary-line: rgba(30, 64, 175, 0.35);
+
+  /* Accent (amber — required markers, highlights) */
+  --accent: #d97706;
+  --accent-soft: rgba(217, 119, 6, 0.12);
+
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.08);
+
+  /* Equipment-family categorical colors */
+  --fam-sep: #1e40af;
+  --fam-spec: #16a34a;
+  --fam-elec: #d97706;
+  --fam-bio: #7c3aed;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  --font-ui: 'Fira Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+svg.icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
