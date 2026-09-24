@@ -22,7 +22,7 @@ jobs:
 
       - name: Install zip and Node.js
         run: |
-          apt-get update && apt-get install -y zip
+          apt-get update && apt-get install -y --no-install-recommends zip
           curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
           apt-get install -y nodejs
 
